@@ -12,13 +12,13 @@ public class BankAccount {
 
     public void deposit(double amount) {
         increaseBalanceBy(amount);
-        transactionLog.storeDeposit();
+        transactionLog.storeDeposit(new DepositTransaction());
     }
 
     public void withdraw(double amount) {
         validateTransaction(amount);
         decreaseBalanceBy(amount);
-        transactionLog.storeWithdrawal();
+        transactionLog.storeWithdrawal(new WithdrawalTransaction());
     }
 
     public void transferTo(BankAccount receiver, double amount) {
