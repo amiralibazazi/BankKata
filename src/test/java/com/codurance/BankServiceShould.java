@@ -29,10 +29,10 @@ public class BankServiceShould {
         account1.withdraw(150.00);
         account1.printStatement();
         assertThat(statementContent.toString(), is(
-                "DATE      AMOUNT      BALANCE\n" + //6 spaces inbetween
-                "17/09/14  500.00      500.00\n" +  //2 spaces from date to amount
-                "17/09/14  -74.50      425.50\n" +  //
-                "17/09/14  -150.00     275.60\n"
+                "DATE       AMOUNT      BALANCE\n" + //6 spaces inbetween
+                "17/09/14   500.00      500.00\n" +  //2 spaces from date to amount
+                "17/09/14   -74.50      425.50\n" +  //
+                "17/09/14   -150.00     275.60\n"
         ));
     }
 }

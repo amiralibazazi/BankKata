@@ -36,7 +36,7 @@ public class BankAccount {
     }
 
     public void printStatement() {
-
+        transactionLog.print();
     }
 
     private void validateTransaction(double amount) {

@@ -20,4 +20,8 @@ public class TransactionLog {
     public boolean containsTransaction(Transaction transaction) {
         return transactions.contains(transaction);
     }
+
+    public void print() {
+
+    }
 }

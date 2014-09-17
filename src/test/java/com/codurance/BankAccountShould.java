@@ -87,4 +87,10 @@ public class BankAccountShould {
         account1.transferTo(account2, ONE_HUNDRED);
         verify(mockedTransactionLog2).store(any(Transaction.class));
     }
+
+    @Test public void
+    print_out_information_from_transaction_log() {
+        account1.printStatement();
+        verify(mockedTransactionLog1).print();
+    }
 }
