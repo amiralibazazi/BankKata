@@ -22,7 +22,7 @@ public class BankAccountShould {
     }
 
     @Test(expected=RuntimeException.class) public void
-    throw_an_exception_when_trying_to_withdraw_more_than_account_balance() {
+    not_let_you_withdraw_more_than_account_balance() {
         account1.withdraw(100.00);
     }
 
@@ -31,5 +31,20 @@ public class BankAccountShould {
         account1.deposit(200.00);
         account1.withdraw(100.00);
         assertThat(account1.balance, is(100.00));
+    }
+
+    @Test(expected=RuntimeException.class) public void
+    not_let_you_transfer_more_than_account_balance() {
+        BankAccount account2 = new BankAccount();
+        account1.transferTo(account2, 100.00);
+    }
+
+    @Test public void
+    be_able_to_transfer_money_to_another_account() {
+        BankAccount account2 = new BankAccount();
+        account1.deposit(200);
+        account1.transferTo(account2, 100.00);
+        account1.transferTo(account2, 50.00);
+        assertThat(account2.balance, is(150.00));
     }
 }

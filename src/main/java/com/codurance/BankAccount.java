@@ -13,11 +13,13 @@ public class BankAccount {
     }
 
     public void transferTo(BankAccount receiver, double amount) {
-
+        validateTransaction(amount);
+        withdraw(amount);
+        receiver.deposit(amount);
     }
 
     public void withdraw(double amount) {
-        validateWithdrawal(amount);
+        validateTransaction(amount);
         balance -= amount;
     }
 
@@ -25,7 +27,7 @@ public class BankAccount {
 
     }
 
-    private void validateWithdrawal(double amount) {
+    private void validateTransaction(double amount) {
         if (amount > balance){
             throw new RuntimeException("Not enough money in balance to make this transaction" );
         }
