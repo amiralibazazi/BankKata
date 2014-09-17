@@ -1,5 +1,7 @@
 package com.codurance;
 
+import com.codurance.Transactions.Transaction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +13,8 @@ public class TransactionLog {
         transactions = new ArrayList<>();
     }
 
-    public void storeDeposit(Transaction deposit) {
-        transactions.add(deposit);
-    }
-
-    public void storeWithdrawal(Transaction withdrawal) {
-        transactions.add(withdrawal);
-    }
-
-    public void storeTransfer() {
-
-    }
-
-    public void storeReceipt() {
-
+    public void store(Transaction transaction) {
+        transactions.add(transaction);
     }
 
     public boolean containsTransaction(Transaction transaction) {

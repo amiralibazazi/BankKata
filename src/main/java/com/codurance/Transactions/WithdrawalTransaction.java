@@ -1,4 +1,4 @@
-package com.codurance;
+package com.codurance.Transactions;
 
 public class WithdrawalTransaction implements Transaction {
 }

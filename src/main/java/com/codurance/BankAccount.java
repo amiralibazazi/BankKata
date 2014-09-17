@@ -1,5 +1,7 @@
 package com.codurance;
 
+import com.codurance.Transactions.*;
+
 public class BankAccount {
     private static final Double ZERO = 0.00;
     public Double balance;
@@ -9,28 +11,28 @@ public class BankAccount {
         this.balance = ZERO;
         this.transactionLog = transactionLog;
     }
-
+    //REFACTOR THESE TO MAKE A SINGLE METHOD WITH CONSTANTS/ACCOUNT PASSED
     public void deposit(double amount) {
         increaseBalanceBy(amount);
-        transactionLog.storeDeposit(new DepositTransaction());
+        transactionLog.store(new DepositTransaction());
     }
 
     public void withdraw(double amount) {
         validateTransaction(amount);
         decreaseBalanceBy(amount);
-        transactionLog.storeWithdrawal(new WithdrawalTransaction());
+        transactionLog.store(new WithdrawalTransaction());
     }
 
     public void transferTo(BankAccount receiver, double amount) {
         validateTransaction(amount);
         decreaseBalanceBy(amount);
         receiver.receive(amount);
-        transactionLog.storeTransfer();
+        transactionLog.store(new TransferTransaction());
     }
 
     public void receive(double amount) {
         increaseBalanceBy(amount);
-        transactionLog.storeReceipt();
+        transactionLog.store(new ReceiptTransaction());
     }
 
     public void printStatement() {
