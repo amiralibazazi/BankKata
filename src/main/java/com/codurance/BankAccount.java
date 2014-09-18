@@ -1,5 +1,7 @@
 package com.codurance;
 
+import com.codurance.Transactions.Transaction;
+
 public class BankAccount {
     private TransactionLog transactionLog;
 
@@ -12,6 +14,6 @@ public class BankAccount {
     }
 
     public void printStatement() {
-
+        transactionLog.printStatement();
     }
 }

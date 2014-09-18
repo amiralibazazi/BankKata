@@ -1,5 +1,6 @@
 package com.codurance;
 
+import com.codurance.Transactions.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,17 +23,24 @@ public class BankAccountShould {
         transfer = new TransferTransaction();
         receipt = new ReceiptTransaction();
     }
+
     @Test public void
     store_all_transactions_to_a_transaction_log() { //DONT LIKE THIS CLUTTER
-        BankAccount anAccount = anAccount()
-                                    .withTransactions(deposit, withdrawal, transfer, receipt)
+        Transaction[] transactions = {deposit, withdrawal, transfer, receipt};
+        BankAccount anAccount = anAccount() //ignore unused warning, instance is indirectly used
+                                    .withTransactions(transactions)
                                     .withTransactionLog(transactionLog)
                                     .build();
 
-        verify(transactionLog).store(deposit);
-        verify(transactionLog).store(withdrawal);
-        verify(transactionLog).store(transfer);
-        verify(transactionLog).store(receipt);
+        for (Transaction transaction : transactions) {
+            verify(transactionLog).store(transaction);
+        }
     }
 
+    @Test public void
+    ask_the_transaction_log_to_print_a_bank_statement() {
+        BankAccount account = new BankAccount(transactionLog);
+        account.printStatement();
+        verify(transactionLog).printStatement();
+    }
 }

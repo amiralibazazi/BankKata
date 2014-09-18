@@ -1,6 +1,8 @@
 package com.codurance;
 
-public class AccountBuilder { //SOMETHING NOT WORKING HERE
+import com.codurance.Transactions.Transaction;
+
+public class AccountBuilder {
     public TransactionLog transactionLog;
     private Transaction[] transactions;
 

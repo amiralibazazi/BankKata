@@ -1,5 +1,10 @@
 package com.codurance;
 
+import com.codurance.Transactions.DepositTransaction;
+import com.codurance.Transactions.ReceiptTransaction;
+import com.codurance.Transactions.TransferTransaction;
+import com.codurance.Transactions.WithdrawalTransaction;
+
 public class BankService {
 
     public BankAccount createAccount() {
