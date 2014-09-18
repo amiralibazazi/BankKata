@@ -1,6 +1,8 @@
 package com.codurance.Transactions;
 
-import com.codurance.Transactions.Transaction;
+public class ReceiptTransaction extends Transaction {
+    @Override
+    public void print() {
 
-public class ReceiptTransaction implements Transaction {
+    }
 }

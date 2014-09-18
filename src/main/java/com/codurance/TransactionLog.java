@@ -1,6 +1,5 @@
 package com.codurance;
 
-import com.codurance.Transactions.DepositTransaction;
 import com.codurance.Transactions.Transaction;
 
 import java.util.ArrayList;
