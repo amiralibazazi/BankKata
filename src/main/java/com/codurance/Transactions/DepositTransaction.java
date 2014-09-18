@@ -1,5 +1,13 @@
 package com.codurance.Transactions;
 
-public class DepositTransaction implements Transaction {
+import com.codurance.Transactions.Transaction;
 
+public class DepositTransaction extends Transaction {
+    public DepositTransaction() {
+    }
+
+    @Override
+    public void print() {
+
+    }
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionLog {
-
     private List<Transaction> transactions;
 
     public TransactionLog() {
@@ -17,11 +16,11 @@ public class TransactionLog {
         transactions.add(transaction);
     }
 
-    public boolean containsTransaction(Transaction transaction) {
-        return transactions.contains(transaction);
+    public void printStatement() {
+
     }
 
-    public void print() {
-
+    public boolean hasTransaction(Transaction transaction) {
+        return transactions.contains(transaction);
     }
 }

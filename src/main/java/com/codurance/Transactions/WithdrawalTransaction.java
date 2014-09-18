@@ -1,4 +1,13 @@
 package com.codurance.Transactions;
 
-public class WithdrawalTransaction implements Transaction {
+import com.codurance.Transactions.Transaction;
+
+public class WithdrawalTransaction extends Transaction {
+    public WithdrawalTransaction() {
+    }
+
+    @Override
+    public void print() {
+
+    }
 }
