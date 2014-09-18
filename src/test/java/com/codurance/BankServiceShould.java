@@ -41,7 +41,6 @@ public class BankServiceShould {
         bankService.processTransfer(account1, account2, ONE_HUNDRED);
         bankService.processTransfer(account2, account1, ONE_HUNDRED);
         bankService.printStatementFor(account1);
-
         assertThat(statementContent.toString(), is(
                 "DATE       AMOUNT      BALANCE\n" +
                         "17/09/14   400.00      400.00\n" +
@@ -69,5 +68,11 @@ public class BankServiceShould {
         bankService.processTransfer(mockedAccount1, mockedAccount2, ONE_HUNDRED);
         verify(mockedAccount1).processTransaction(any(TRANSFER_TRANSACTION));
         verify(mockedAccount2).processTransaction(any(RECEIPT_TRANSACTION));
+    }
+
+    @Test public void
+    ask_an_account_to_print_its_statement() {
+        bankService.printStatementFor(mockedAccount1);
+        verify(mockedAccount1).printStatement();
     }
 }

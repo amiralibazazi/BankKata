@@ -3,7 +3,7 @@ package com.codurance;
 public class BankService {
 
     public BankAccount createAccount() {
-        return new BankAccount();
+        return new BankAccount(new TransactionLog());
     }
 
     public void processDeposit(BankAccount account, double amount) {
@@ -20,6 +20,6 @@ public class BankService {
     }
 
     public void printStatementFor(BankAccount account) {
-
+        account.printStatement();
     }
 }
