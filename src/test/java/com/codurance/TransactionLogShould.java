@@ -9,14 +9,15 @@ import static org.junit.Assert.assertThat;
 
 public class TransactionLogShould {
 
-    Transaction deposit;
-    Transaction withdrawal;
-    TransactionLog transactionLog;
+    private static final double ARBITRARY_AMOUNT = 0.00;
+    private Transaction deposit;
+    private Transaction withdrawal;
+    private TransactionLog transactionLog;
 
     @Before
     public void initialise() {
-        deposit = new DepositTransaction();
-        withdrawal = new WithdrawalTransaction();
+        deposit = new DepositTransaction(ARBITRARY_AMOUNT);
+        withdrawal = new WithdrawalTransaction(ARBITRARY_AMOUNT);
         transactionLog = new TransactionLog();
     }
 

@@ -12,16 +12,16 @@ public class BankService {
     }
 
     public void processDeposit(BankAccount account, double amount) {
-        account.processTransaction(new DepositTransaction());
+        account.processTransaction(new DepositTransaction(amount));
     }
 
     public void processWithdrawal(BankAccount account, double amount) {
-        account.processTransaction(new WithdrawalTransaction());
+        account.processTransaction(new WithdrawalTransaction(amount));
     }
 
     public void processTransfer(BankAccount fromAccount, BankAccount toAccount, double amount) {
-        fromAccount.processTransaction(new TransferTransaction());
-        toAccount.processTransaction(new ReceiptTransaction());
+        fromAccount.processTransaction(new TransferTransaction(amount));
+        toAccount.processTransaction(new ReceiptTransaction(amount));
     }
 
     public void printStatementFor(BankAccount account) {

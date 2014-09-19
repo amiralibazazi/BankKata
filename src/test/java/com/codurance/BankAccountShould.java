@@ -9,6 +9,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class BankAccountShould {
+    private static final double ARBITRARY_AMOUNT = 0.00;
     private Transaction deposit;
     private Transaction receipt;
     private Transaction withdrawal;
@@ -18,10 +19,10 @@ public class BankAccountShould {
     @Before
     public void initialise() {
         transactionLog = mock(TransactionLog.class);
-        deposit = new DepositTransaction();
-        withdrawal = new WithdrawalTransaction();
-        transfer = new TransferTransaction();
-        receipt = new ReceiptTransaction();
+        deposit = new DepositTransaction(ARBITRARY_AMOUNT);
+        withdrawal = new WithdrawalTransaction(ARBITRARY_AMOUNT);
+        transfer = new TransferTransaction(ARBITRARY_AMOUNT);
+        receipt = new ReceiptTransaction(ARBITRARY_AMOUNT);
     }
 
     @Test public void
