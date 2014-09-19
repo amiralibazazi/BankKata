@@ -1,5 +1,7 @@
 package com.codurance.Transactions;
 
+import com.codurance.StatementPrinter;
+
 public class ReceiptTransaction extends Transaction {
 
     public ReceiptTransaction(double transactionAmount) {
@@ -7,7 +9,7 @@ public class ReceiptTransaction extends Transaction {
     }
 
     @Override
-    public void print() {
+    public void print(StatementPrinter statementPrinter) {
 
     }
 }

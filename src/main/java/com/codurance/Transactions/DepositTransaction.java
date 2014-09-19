@@ -1,6 +1,6 @@
 package com.codurance.Transactions;
 
-import com.codurance.Transactions.Transaction;
+import com.codurance.StatementPrinter;
 
 public class DepositTransaction extends Transaction {
 
@@ -9,7 +9,7 @@ public class DepositTransaction extends Transaction {
     }
 
     @Override
-    public void print() {
+    public void print(StatementPrinter statementPrinter) {
         printDate();
         printTransactionAmount();
     }

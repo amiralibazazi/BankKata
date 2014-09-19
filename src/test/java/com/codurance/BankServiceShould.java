@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -27,11 +29,16 @@ public class BankServiceShould {
     private final ByteArrayOutputStream statementContent = new ByteArrayOutputStream();
     private BankService bankService;
     private BankAccount mockedAccount1;
+    private StatementPrinter statementPrinter;
+    private String todaysDate;
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
 
     @Before
     public void initialise() {
+        todaysDate = DATE_FORMAT.format(new Date());
+        statementPrinter = new StatementPrinter();
         System.setOut(new PrintStream(statementContent));
-        bankService = new BankService();
+        bankService = new BankService(statementPrinter);
         mockedAccount1 = mock(BankAccount.class);
     }
 
@@ -46,11 +53,11 @@ public class BankServiceShould {
         bankService.processTransfer(account2, account1, ONE_HUNDRED);
         bankService.printStatementFor(account1);
         assertThat(statementContent.toString(), is(
-                "DATE       AMOUNT      BALANCE\n" +
-                "17/09/14   400.00      400.00\n" +
-                "17/09/14   -100.00     300.00\n" +
-                "17/09/14   -100.00     200.00\n" +
-                "17/09/14   +100.00     300.00\n"
+                    "DATE\t\tAMOUNT\t\tBALANCE\n" +
+               todaysDate+"\t400.00\t\t400.00\n" +
+               todaysDate+"\t-100.00\t\t300.00\n" +
+               todaysDate+"\t-100.00\t\t200.00\n" +
+               todaysDate+"\t100.00\t\t300.00\n"
         ));
     }
 
@@ -77,6 +84,6 @@ public class BankServiceShould {
     @Test public void
     ask_an_account_to_print_its_statement() {
         bankService.printStatementFor(mockedAccount1);
-        verify(mockedAccount1).printStatement();
+        verify(mockedAccount1).printStatement(statementPrinter);
     }
 }

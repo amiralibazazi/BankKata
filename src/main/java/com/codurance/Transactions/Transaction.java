@@ -1,5 +1,7 @@
 package com.codurance.Transactions;
 
+import com.codurance.StatementPrinter;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,7 +14,7 @@ public abstract class Transaction {
         this.transactionAmount = transactionAmount;
     }
 
-    public abstract void print();
+    public abstract void print(StatementPrinter statementPrinter);
 
     protected void printDate() {
         System.out.print(format(transactionDate));

@@ -7,8 +7,14 @@ import com.codurance.Transactions.WithdrawalTransaction;
 
 public class BankService {
 
+    public StatementPrinter statementPrinter;
+
+    public BankService(StatementPrinter statementPrinter) {
+        this.statementPrinter = statementPrinter;
+    }
+
     public BankAccount createAccount() {
-        return new BankAccount(new TransactionLog());
+        return new BankAccount(new TransactionHistory());
     }
 
     public void processDeposit(BankAccount account, double amount) {
@@ -25,6 +31,6 @@ public class BankService {
     }
 
     public void printStatementFor(BankAccount account) {
-        account.printStatement();
+        account.printStatement(statementPrinter);
     }
 }
