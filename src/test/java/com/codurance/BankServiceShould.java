@@ -47,10 +47,10 @@ public class BankServiceShould {
         bankService.printStatementFor(account1);
         assertThat(statementContent.toString(), is(
                 "DATE       AMOUNT      BALANCE\n" +
-                        "17/09/14   400.00      400.00\n" +
-                        "17/09/14   -100.00     300.00\n" +
-                        "17/09/14   -100.00     200.00\n" +
-                        "17/09/14   +100.00     300.00\n"
+                "17/09/14   400.00      400.00\n" +
+                "17/09/14   -100.00     300.00\n" +
+                "17/09/14   -100.00     200.00\n" +
+                "17/09/14   +100.00     300.00\n"
         ));
     }
 

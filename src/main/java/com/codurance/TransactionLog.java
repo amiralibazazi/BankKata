@@ -25,10 +25,10 @@ public class TransactionLog {
         return transactions.contains(transaction);
     }
 
-    public void printBalance() {
-        double runningBalance = 0;
-        for (Transaction transaction : transactions) {
-            runningBalance += Double.parseDouble();
-        }
-    }
+//    public void printBalance() {
+//        double totalBalance = 0;
+//        for (Transaction transaction : transactions) {
+//            totalBalance += Double.parseDouble();
+//        }
+//    }
 }
