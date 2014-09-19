@@ -10,7 +10,7 @@ public abstract class Transaction {
     public abstract void print();
 
     public void printDate() {
-        System.out.print(format(transactionDate));
+        System.out.print(format(transactionDate).toString());
     }
 
     private String format(Date date) {
