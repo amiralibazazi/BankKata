@@ -11,5 +11,6 @@ public class DepositTransaction extends Transaction {
     @Override
     public void print() {
         printDate();
+        printTransactionAmount();
     }
 }

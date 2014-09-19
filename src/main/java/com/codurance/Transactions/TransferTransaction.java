@@ -10,6 +10,12 @@ public class TransferTransaction extends Transaction {
 
     @Override
     public void print() {
+        printDate();
+        printTransactionAmount();
+    }
 
+    @Override
+    public void printTransactionAmount() {
+        System.out.print("-"+transactionAmount);
     }
 }

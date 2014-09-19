@@ -6,7 +6,7 @@ import java.util.Date;
 public abstract class Transaction {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
     private Date transactionDate = new Date();
-    private double transactionAmount;
+    double transactionAmount;
 
     public Transaction(double transactionAmount) {
         this.transactionAmount = transactionAmount;
@@ -14,7 +14,7 @@ public abstract class Transaction {
 
     public abstract void print();
 
-    public void printDate() {
+    protected void printDate() {
         System.out.print(format(transactionDate));
     }
 
