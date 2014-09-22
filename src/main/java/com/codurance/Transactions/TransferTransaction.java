@@ -9,13 +9,13 @@ public class TransferTransaction extends Transaction {
     }
 
     @Override
-    public void print(StatementPrinter statementPrinter) {
-        printDate();
-        printTransactionAmount();
+    protected void updateTotalBalance(StatementPrinter statementPrinter) {
+        statementPrinter.updateTotalBalance(-transactionAmount);
     }
 
     @Override
     public void printTransactionAmount() {
-        System.out.print("-"+transactionAmount);
+        System.out.print("-"+twoDecimalFormat(transactionAmount));
     }
+
 }

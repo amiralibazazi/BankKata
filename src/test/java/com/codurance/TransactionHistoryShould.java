@@ -56,16 +56,17 @@ public class TransactionHistoryShould {
     @Test
     public void
     print_a_statement_of_transactions() {
-        transactionHistory.store(deposit);
-        transactionHistory.store(withdrawal);
+        transactionHistory.store(new DepositTransaction(TWO_HUNDRED));
+        transactionHistory.store(new WithdrawalTransaction(FIFTY));
         transactionHistory.store(new ReceiptTransaction(TWO_HUNDRED));
+        transactionHistory.store(new TransferTransaction(FIFTY));
         transactionHistory.printStatement(statementPrinter);
         assertThat(consoleContent.toString(), is(
                 "DATE\t\tAMOUNT\t\tBALANCE\n" +
-                        todaysDate+"\t400.00\t\t400.00\n" +
-                        todaysDate+"\t-100.00\t\t300.00\n" +
-                        todaysDate+"\t-100.00\t\t200.00\n" +
-                        todaysDate+"\t100.00\t\t300.00\n"
+                        todaysDate+"\t200.00\t\t200.00\n" +
+                        todaysDate+"\t-50.00\t\t150.00\n" +
+                        todaysDate+"\t200.00\t\t350.00\n" +
+                        todaysDate+"\t-50.00\t\t300.00\n"
         ));
     }
 }

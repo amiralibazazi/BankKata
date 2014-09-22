@@ -2,6 +2,7 @@ package com.codurance;
 
 import com.codurance.Transactions.Transaction;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,9 @@ public class TransactionHistory {
         printStatementHeader();
         for(Transaction transaction : transactions) {
             transaction.print(statementPrinter);
+            statementPrinter.printTwoTabs();
+            statementPrinter.printBalanceTotal();
+            statementPrinter.printNewLine();
         }
     }
 

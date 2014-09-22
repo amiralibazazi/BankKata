@@ -9,13 +9,12 @@ public class WithdrawalTransaction extends Transaction {
     }
 
     @Override
-    public void print(StatementPrinter statementPrinter) {
-        printDate();
-        printTransactionAmount();
+    public void printTransactionAmount() {
+        System.out.print("-"+twoDecimalFormat(transactionAmount));
     }
 
     @Override
-    public void printTransactionAmount() {
-        System.out.print("-"+transactionAmount);
+    protected void updateTotalBalance(StatementPrinter statementPrinter) {
+        statementPrinter.updateTotalBalance(-transactionAmount);
     }
 }

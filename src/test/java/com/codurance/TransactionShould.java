@@ -33,11 +33,11 @@ public class TransactionShould {
     @Test public void
     print_out_the_date_the_transaction_occured() {
         arbitraryTransaction.print(statementPrinter);
-        assertThat(transactionContentContains(DATE_FORMAT.format(todaysDate)), is(true));
+        assertThat(transactionContentContains(todaysDate), is(true));
     }
 
     @Test public void
-    print_out_the_difference_to_the_balance_caused_by_the_transaction() { //THESE TESTS MIGHT BECOME REDUNDANT WHEN BEHAVIOURS CHANGE
+    print_out_the_difference_to_the_balance_caused_by_the_transaction() {
         arbitraryTransaction.print(statementPrinter);
         assertThat(transactionContentContains(""+ARBITRARY_AMOUNT), is(true));
     }
