@@ -20,19 +20,6 @@ import static org.mockito.Mockito.verify;
 
 public class BankServiceShould {
 
-    private static final Money ONE_HUNDRED = new Money(100.00);
-    private static final Money FOUR_HUNDRED = new Money(400.00);
-    private static final Class<DepositTransaction> DEPOSIT_TRANSACTION = DepositTransaction.class;
-    private static final Class<WithdrawalTransaction> WITHDRAWAL_TRANSACTION = WithdrawalTransaction.class;
-    private static final Class<TransferTransaction> TRANSFER_TRANSACTION = TransferTransaction.class;
-    private static final Class<ReceiptTransaction> RECEIPT_TRANSACTION = ReceiptTransaction.class;
-    private final ByteArrayOutputStream statementContent = new ByteArrayOutputStream();
-    private BankService bankService;
-    private BankAccount mockedAccount1;
-    private StatementPrinter statementPrinter;
-    private String todaysDate;
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
-
     @Before
     public void initialise() {
         todaysDate = DATE_FORMAT.format(new Date());
@@ -86,4 +73,17 @@ public class BankServiceShould {
         bankService.printStatementFor(mockedAccount1);
         verify(mockedAccount1).printStatement(statementPrinter);
     }
+
+    private static final Money ONE_HUNDRED = new Money(100.00);
+    private static final Money FOUR_HUNDRED = new Money(400.00);
+    private static final Class<DepositTransaction> DEPOSIT_TRANSACTION = DepositTransaction.class;
+    private static final Class<WithdrawalTransaction> WITHDRAWAL_TRANSACTION = WithdrawalTransaction.class;
+    private static final Class<TransferTransaction> TRANSFER_TRANSACTION = TransferTransaction.class;
+    private static final Class<ReceiptTransaction> RECEIPT_TRANSACTION = ReceiptTransaction.class;
+    private final ByteArrayOutputStream statementContent = new ByteArrayOutputStream();
+    private BankService bankService;
+    private BankAccount mockedAccount1;
+    private StatementPrinter statementPrinter;
+    private String todaysDate;
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
 }

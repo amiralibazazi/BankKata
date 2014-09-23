@@ -24,11 +24,11 @@ public class Money {
         return this;
     }
 
-    public void printValue() {
-        System.out.print(toTwoDecimals(value));
-    }
-
     private String toTwoDecimals(double value) {
         return TWO_DECIMAL_FORMAT.format(value);
+    }
+
+    public void printValue() {
+        System.out.print(toTwoDecimals(value));
     }
 }

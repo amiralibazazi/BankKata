@@ -1,9 +1,6 @@
 package com.codurance;
 
-import java.text.DecimalFormat;
-
 public class StatementPrinter {
-    private static final DecimalFormat TWO_DECIMALS = new DecimalFormat("#.00");
     private Money balanceTotal;
 
     public StatementPrinter() {
@@ -15,11 +12,11 @@ public class StatementPrinter {
     }
 
     public void printBalanceTotal() {
-        System.out.print(TWO_DECIMALS.format(balanceTotal));
+        balanceTotal.printValue();
     }
 
     public void increaseBalanceTotalBy(Money transactionAmount) {
-        balanceTotal = balanceTotal.add(transactionAmount);
+        balanceTotal.add(transactionAmount);
     }
 
     public void printNewLine() {
@@ -30,7 +27,7 @@ public class StatementPrinter {
         System.out.print("\t");
     }
 
-    public void decreaseBalanceTotalBy(Money transactionAmount) {
-
+    public void decreaseBalanceTotalBy(Money amount) {
+        balanceTotal.deduct(amount);
     }
 }

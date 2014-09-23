@@ -9,27 +9,20 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class BankAccountShould {
-    private static final Money ARBITRARY_AMOUNT = new Money(0.00);
-    private Transaction deposit;
-    private Transaction receipt;
-    private Transaction withdrawal;
-    private Transaction transfer;
-    private TransactionHistory transactionHistory;
-    private StatementPrinter statementPrinter;
 
     @Before
     public void initialise() {
         transactionHistory = mock(TransactionHistory.class);
-        deposit = new DepositTransaction(ARBITRARY_AMOUNT);
-        withdrawal = new WithdrawalTransaction(ARBITRARY_AMOUNT);
-        transfer = new TransferTransaction(ARBITRARY_AMOUNT);
-        receipt = new ReceiptTransaction(ARBITRARY_AMOUNT);
+        depositTransaction = new DepositTransaction(ARBITRARY_AMOUNT);
+        withdrawalTransaction = new WithdrawalTransaction(ARBITRARY_AMOUNT);
+        transferTransaction = new TransferTransaction(ARBITRARY_AMOUNT);
+        receiptTransaction = new ReceiptTransaction(ARBITRARY_AMOUNT);
         statementPrinter = new StatementPrinter();
     }
 
     @Test public void
-    store_all_transactions_to_a_transaction_log() { //DONT LIKE THIS CLUTTER
-        Transaction[] transactions = {deposit, withdrawal, transfer, receipt};
+    store_all_transactions_to_a_transaction_log() {
+        Transaction[] transactions = {depositTransaction, withdrawalTransaction, transferTransaction, receiptTransaction};
         BankAccount anAccount = anAccount() //ignore unused warning, instance is indirectly used
                                     .withTransactions(transactions)
                                     .withTransactionLog(transactionHistory)
@@ -46,4 +39,12 @@ public class BankAccountShould {
         account.printStatement(statementPrinter);
         verify(transactionHistory).printStatement(statementPrinter);
     }
+
+    private static final Money ARBITRARY_AMOUNT = new Money(0.00);
+    private Transaction depositTransaction;
+    private Transaction receiptTransaction;
+    private Transaction withdrawalTransaction;
+    private Transaction transferTransaction;
+    private TransactionHistory transactionHistory;
+    private StatementPrinter statementPrinter;
 }
