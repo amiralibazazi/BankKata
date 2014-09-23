@@ -60,7 +60,6 @@ public class TransactionHistoryShould {
 
     private static final Money ARBITRARY_AMOUNT = new Money(25.00);
     private static final Money FIFTY = new Money(50.00);
-    private static final Money ONE_HUNDRED = new Money(100.00);
     private static final Money TWO_HUNDRED = new Money(200.00);
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
     private ByteArrayOutputStream consoleContent = new ByteArrayOutputStream();

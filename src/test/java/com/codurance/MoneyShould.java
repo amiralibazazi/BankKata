@@ -26,6 +26,7 @@ public class MoneyShould {
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     @Test(expected=RuntimeException.class) public void
     throw_an_exception_when_handling_a_negative_value() {
         Money negativeMoney = new Money(NEGATIVE_AMOUNT);

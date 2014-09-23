@@ -2,11 +2,11 @@ package com.codurance;
 
 import com.codurance.Transactions.Transaction;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionHistory {
+    public static final String STATEMENT_HEADER = "DATE\t\tAMOUNT\t\tBALANCE";
     private List<Transaction> transactions;
 
     public TransactionHistory() {
@@ -28,7 +28,7 @@ public class TransactionHistory {
     }
 
     private void printStatementHeader() {
-        System.out.println("DATE\t\tAMOUNT\t\tBALANCE");
+        System.out.println(STATEMENT_HEADER);
     }
 
     public boolean hasTransaction(Transaction transaction) {

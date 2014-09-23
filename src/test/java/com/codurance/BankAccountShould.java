@@ -20,10 +20,11 @@ public class BankAccountShould {
         statementPrinter = new StatementPrinter();
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     @Test public void
     store_all_transactions_to_a_transaction_log() {
         Transaction[] transactions = {depositTransaction, withdrawalTransaction, transferTransaction, receiptTransaction};
-        BankAccount anAccount = anAccount() //ignore unused warning, instance is indirectly used
+        BankAccount anAccount = anAccount()
                                     .withTransactions(transactions)
                                     .withTransactionLog(transactionHistory)
                                     .build();
