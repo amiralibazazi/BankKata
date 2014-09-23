@@ -8,9 +8,7 @@ public class Money {
     private final DecimalFormat TWO_DECIMAL_FORMAT = new DecimalFormat("#.00");
 
     public Money(double value) {
-        if (value < 0) {
-            throw new RuntimeException("Currency can not hold negative value");
-        }
+        confirmValueIsNotNegative(value);
         this.value = value;
     }
 
@@ -30,5 +28,11 @@ public class Money {
 
     public void printValue() {
         System.out.print(toTwoDecimals(value));
+    }
+
+    private void confirmValueIsNotNegative(double value) {
+        if (value < 0) {
+            throw new RuntimeException("Currency can not hold negative value");
+        }
     }
 }

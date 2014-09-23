@@ -1,6 +1,7 @@
 package com.codurance;
 
 public class StatementPrinter {
+    public static final String STATEMENT_HEADER = "DATE\t\tAMOUNT\t\tBALANCE";
     private Money balanceTotal;
 
     public StatementPrinter() {
@@ -29,5 +30,9 @@ public class StatementPrinter {
 
     public void decreaseBalanceTotalBy(Money amount) {
         balanceTotal.deduct(amount);
+    }
+
+    public void printStatementHeader() {
+        System.out.print(STATEMENT_HEADER);
     }
 }

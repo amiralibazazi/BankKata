@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionHistory {
-    public static final String STATEMENT_HEADER = "DATE\t\tAMOUNT\t\tBALANCE";
     private List<Transaction> transactions;
 
     public TransactionHistory() {
@@ -18,17 +17,13 @@ public class TransactionHistory {
     }
 
     public void printStatement(StatementPrinter statementPrinter) {
-        printStatementHeader();
+        statementPrinter.printStatementHeader();
         for(Transaction transaction : transactions) {
             transaction.print(statementPrinter);
             statementPrinter.printTwoTabs();
             statementPrinter.printBalanceTotal();
             statementPrinter.printNewLine();
         }
-    }
-
-    private void printStatementHeader() {
-        System.out.println(STATEMENT_HEADER);
     }
 
     public boolean hasTransaction(Transaction transaction) {

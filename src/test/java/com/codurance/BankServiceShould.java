@@ -34,10 +34,10 @@ public class BankServiceShould {
     print_a_bank_statement_to_the_console() {
         BankAccount account1 = bankService.createAccount();
         BankAccount account2 = bankService.createAccount();
-        bankService.processDeposit(account1, FOUR_HUNDRED);
-        bankService.processWithdrawal(account1, ONE_HUNDRED);
-        bankService.processTransfer(account1, account2, ONE_HUNDRED);
-        bankService.processTransfer(account2, account1, ONE_HUNDRED);
+        bankService.processDeposit(account1, FOUR_HUNDRED_MONEY);
+        bankService.processWithdrawal(account1, ONE_HUNDRED_MONEY);
+        bankService.processTransfer(account1, account2, ONE_HUNDRED_MONEY);
+        bankService.processTransfer(account2, account1, ONE_HUNDRED_MONEY);
         bankService.printStatementFor(account1);
         assertThat(statementContent.toString(), is(
                     "DATE\t\tAMOUNT\t\tBALANCE\n" +
@@ -50,20 +50,20 @@ public class BankServiceShould {
 
     @Test public void
     process_a_deposit_transaction() {
-        bankService.processDeposit(mockedAccount1, ONE_HUNDRED);
+        bankService.processDeposit(mockedAccount1, ONE_HUNDRED_MONEY);
         verify(mockedAccount1).processTransaction(any(DEPOSIT_TRANSACTION));
     }
 
     @Test public void
     process_a_withdrawal_transaction() {
-        bankService.processWithdrawal(mockedAccount1, ONE_HUNDRED);
+        bankService.processWithdrawal(mockedAccount1, ONE_HUNDRED_MONEY);
         verify(mockedAccount1).processTransaction(any(WITHDRAWAL_TRANSACTION));
     }
 
     @Test public void
     process_a_transfer_between_two_accounts() {
         BankAccount mockedAccount2 = mock(BankAccount.class);
-        bankService.processTransfer(mockedAccount1, mockedAccount2, ONE_HUNDRED);
+        bankService.processTransfer(mockedAccount1, mockedAccount2, ONE_HUNDRED_MONEY);
         verify(mockedAccount1).processTransaction(any(TRANSFER_TRANSACTION));
         verify(mockedAccount2).processTransaction(any(RECEIPT_TRANSACTION));
     }
@@ -74,8 +74,8 @@ public class BankServiceShould {
         verify(mockedAccount1).printStatement(statementPrinter);
     }
 
-    private static final Money ONE_HUNDRED = new Money(100.00);
-    private static final Money FOUR_HUNDRED = new Money(400.00);
+    private static final Money ONE_HUNDRED_MONEY = new Money(100.00);
+    private static final Money FOUR_HUNDRED_MONEY = new Money(400.00);
     private static final Class<DepositTransaction> DEPOSIT_TRANSACTION = DepositTransaction.class;
     private static final Class<WithdrawalTransaction> WITHDRAWAL_TRANSACTION = WithdrawalTransaction.class;
     private static final Class<TransferTransaction> TRANSFER_TRANSACTION = TransferTransaction.class;
