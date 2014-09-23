@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 
 public class StatementPrinterShould {
 
-    private static final double ARBITRARY_AMOUNT = 120.00;
+    private static final Money ARBITRARY_AMOUNT = new Money(120.00);
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
     private ByteArrayOutputStream consoleContent = new ByteArrayOutputStream();
     private String todaysDate;

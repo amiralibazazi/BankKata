@@ -20,8 +20,8 @@ import static org.mockito.Mockito.verify;
 
 public class BankServiceShould {
 
-    private static final double ONE_HUNDRED = 100.00;
-    private static final double FOUR_HUNDRED = 400.00;
+    private static final Money ONE_HUNDRED = new Money(100.00);
+    private static final Money FOUR_HUNDRED = new Money(400.00);
     private static final Class<DepositTransaction> DEPOSIT_TRANSACTION = DepositTransaction.class;
     private static final Class<WithdrawalTransaction> WITHDRAWAL_TRANSACTION = WithdrawalTransaction.class;
     private static final Class<TransferTransaction> TRANSFER_TRANSACTION = TransferTransaction.class;

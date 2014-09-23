@@ -1,18 +1,17 @@
 package com.codurance.Transactions;
 
+import com.codurance.Money;
 import com.codurance.StatementPrinter;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Transaction {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
-    protected static final DecimalFormat TWO_DECIMALS = new DecimalFormat("#.00");
     private Date transactionDate = new Date();
-    double transactionAmount;
+    Money transactionAmount;
 
-    public Transaction(double transactionAmount) {
+    public Transaction(Money transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
@@ -24,7 +23,7 @@ public abstract class Transaction {
     }
 
     protected void updateTotalBalance(StatementPrinter statementPrinter) {
-        statementPrinter.updateTotalBalance(transactionAmount);
+        statementPrinter.increaseBalanceTotalBy(transactionAmount);
     }
 
     protected void printDate() {
@@ -32,11 +31,7 @@ public abstract class Transaction {
     }
 
     public void printTransactionAmount() {
-        System.out.print(twoDecimalFormat(transactionAmount));
-    }
-
-    protected String twoDecimalFormat(double transactionAmount) {
-        return TWO_DECIMALS.format(transactionAmount);
+        transactionAmount.printValue();
     }
 
     private String format(Date date) {

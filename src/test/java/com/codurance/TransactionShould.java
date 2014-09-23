@@ -13,8 +13,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class TransactionShould {
-    private static final double ARBITRARY_AMOUNT = 50.00;
-    private static final double ONE_HUNDRED = 100.00;
+    private static final Money ARBITRARY_AMOUNT = new Money(50.00);
+    private static final Money ONE_HUNDRED = new Money(100.00);
     private ByteArrayOutputStream transactionContent = new ByteArrayOutputStream();
     private String todaysDate;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");

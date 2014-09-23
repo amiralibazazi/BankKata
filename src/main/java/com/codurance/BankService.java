@@ -17,15 +17,15 @@ public class BankService {
         return new BankAccount(new TransactionHistory());
     }
 
-    public void processDeposit(BankAccount account, double amount) {
+    public void processDeposit(BankAccount account, Money amount) {
         account.processTransaction(new DepositTransaction(amount));
     }
 
-    public void processWithdrawal(BankAccount account, double amount) {
+    public void processWithdrawal(BankAccount account, Money amount) {
         account.processTransaction(new WithdrawalTransaction(amount));
     }
 
-    public void processTransfer(BankAccount fromAccount, BankAccount toAccount, double amount) {
+    public void processTransfer(BankAccount fromAccount, BankAccount toAccount, Money amount) {
         fromAccount.processTransaction(new TransferTransaction(amount));
         toAccount.processTransaction(new ReceiptTransaction(amount));
     }

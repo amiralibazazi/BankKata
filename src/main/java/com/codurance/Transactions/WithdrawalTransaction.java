@@ -1,20 +1,22 @@
 package com.codurance.Transactions;
 
+import com.codurance.Money;
 import com.codurance.StatementPrinter;
 
 public class WithdrawalTransaction extends Transaction {
 
-    public WithdrawalTransaction(double transactionAmount) {
+    public WithdrawalTransaction(Money transactionAmount) {
         super(transactionAmount);
     }
 
     @Override
     public void printTransactionAmount() {
-        System.out.print("-"+twoDecimalFormat(transactionAmount));
+        System.out.print("-");
+        transactionAmount.printValue();
     }
 
     @Override
     protected void updateTotalBalance(StatementPrinter statementPrinter) {
-        statementPrinter.updateTotalBalance(-transactionAmount);
+        statementPrinter.decreaseBalanceTotalBy(transactionAmount);
     }
 }

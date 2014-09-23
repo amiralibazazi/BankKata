@@ -9,7 +9,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class BankAccountShould {
-    private static final double ARBITRARY_AMOUNT = 0.00;
+    private static final Money ARBITRARY_AMOUNT = new Money(0.00);
     private Transaction deposit;
     private Transaction receipt;
     private Transaction withdrawal;
