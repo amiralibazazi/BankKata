@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 public class Money {
 
-    private final double value;
+    private double value;
     private final DecimalFormat TWO_DECIMAL_FORMAT = new DecimalFormat("#.00");
 
     public Money(double value) {
@@ -14,8 +14,14 @@ public class Money {
         this.value = value;
     }
 
-    public Money add(Money transactionAmount) {
-        return null;
+    public Money add(Money amountToAdd) {
+        value += amountToAdd.value;
+        return this;
+    }
+
+    public Money deduct(Money amountToDeduct) {
+        value -= amountToDeduct.value;
+        return this;
     }
 
     public void printValue() {
