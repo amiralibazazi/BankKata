@@ -6,7 +6,7 @@ import com.codurance.StatementPrinter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Transaction {
+public class Transaction {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
     private Date transactionDate = new Date();
     Money transactionAmount;
