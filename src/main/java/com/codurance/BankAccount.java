@@ -3,17 +3,17 @@ package com.codurance;
 import com.codurance.Transactions.Transaction;
 
 public class BankAccount {
-    private TransactionLog transactionLog;
+    private TransactionHistory transactionHistory;
 
-    public BankAccount(TransactionLog transactionLog) {
-        this.transactionLog = transactionLog;
+    public BankAccount(TransactionHistory transactionHistory) {
+        this.transactionHistory = transactionHistory;
     }
 
     public void processTransaction(Transaction transaction) {
-        transactionLog.store(transaction);
+        transactionHistory.store(transaction);
     }
 
-    public void printStatement() {
-        transactionLog.printStatement();
+    public void printStatement(StatementPrinter statementPrinter) {
+        transactionHistory.printStatement(statementPrinter);
     }
 }

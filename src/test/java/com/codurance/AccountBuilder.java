@@ -3,7 +3,7 @@ package com.codurance;
 import com.codurance.Transactions.Transaction;
 
 public class AccountBuilder {
-    public TransactionLog transactionLog;
+    public TransactionHistory transactionHistory;
     private Transaction[] transactions;
 
     public static AccountBuilder anAccount() {
@@ -15,13 +15,13 @@ public class AccountBuilder {
         return this;
     }
 
-    public AccountBuilder withTransactionLog(TransactionLog transactionLog) {
-        this.transactionLog = transactionLog;
+    public AccountBuilder withTransactionLog(TransactionHistory transactionHistory) {
+        this.transactionHistory = transactionHistory;
         return this;
     }
 
     public BankAccount build() {
-        BankAccount account = new BankAccount(transactionLog);
+        BankAccount account = new BankAccount(transactionHistory);
         processTransactions(account);
         return account;
     }

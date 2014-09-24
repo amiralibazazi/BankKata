@@ -1,16 +1,10 @@
 package com.codurance.Transactions;
 
-import com.codurance.Transactions.Transaction;
+import com.codurance.Money;
 
 public class DepositTransaction extends Transaction {
 
-    public DepositTransaction(double transactionAmount) {
+    public DepositTransaction(Money transactionAmount) {
         super(transactionAmount);
-    }
-
-    @Override
-    public void print() {
-        printDate();
-        printTransactionAmount();
     }
 }

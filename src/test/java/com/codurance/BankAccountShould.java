@@ -9,39 +9,43 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class BankAccountShould {
-    private static final double ARBITRARY_AMOUNT = 0.00;
-    private Transaction deposit;
-    private Transaction receipt;
-    private Transaction withdrawal;
-    private Transaction transfer;
-    private TransactionLog transactionLog;
 
     @Before
     public void initialise() {
-        transactionLog = mock(TransactionLog.class);
-        deposit = new DepositTransaction(ARBITRARY_AMOUNT);
-        withdrawal = new WithdrawalTransaction(ARBITRARY_AMOUNT);
-        transfer = new TransferTransaction(ARBITRARY_AMOUNT);
-        receipt = new ReceiptTransaction(ARBITRARY_AMOUNT);
+        transactionHistory = mock(TransactionHistory.class);
+        depositTransaction = new DepositTransaction(ARBITRARY_AMOUNT);
+        withdrawalTransaction = new WithdrawalTransaction(ARBITRARY_AMOUNT);
+        transferTransaction = new TransferTransaction(ARBITRARY_AMOUNT);
+        receiptTransaction = new ReceiptTransaction(ARBITRARY_AMOUNT);
+        statementPrinter = new StatementPrinter();
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     @Test public void
-    store_all_transactions_to_a_transaction_log() { //DONT LIKE THIS CLUTTER
-        Transaction[] transactions = {deposit, withdrawal, transfer, receipt};
-        BankAccount anAccount = anAccount() //ignore unused warning, instance is indirectly used
+    store_all_transactions_to_a_transaction_log() {
+        Transaction[] transactions = {depositTransaction, withdrawalTransaction, transferTransaction, receiptTransaction};
+        BankAccount anAccount = anAccount()
                                     .withTransactions(transactions)
-                                    .withTransactionLog(transactionLog)
+                                    .withTransactionLog(transactionHistory)
                                     .build();
 
         for (Transaction transaction : transactions) {
-            verify(transactionLog).store(transaction);
+            verify(transactionHistory).store(transaction);
         }
     }
 
     @Test public void
     ask_the_transaction_log_to_print_a_bank_statement() {
-        BankAccount account = new BankAccount(transactionLog);
-        account.printStatement();
-        verify(transactionLog).printStatement();
+        BankAccount account = new BankAccount(transactionHistory);
+        account.printStatement(statementPrinter);
+        verify(transactionHistory).printStatement(statementPrinter);
     }
+
+    private static final Money ARBITRARY_AMOUNT = new Money(0.00);
+    private Transaction depositTransaction;
+    private Transaction receiptTransaction;
+    private Transaction withdrawalTransaction;
+    private Transaction transferTransaction;
+    private TransactionHistory transactionHistory;
+    private StatementPrinter statementPrinter;
 }

@@ -1,25 +1,37 @@
 package com.codurance.Transactions;
 
+import com.codurance.Money;
+import com.codurance.StatementPrinter;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Transaction {
+public class Transaction {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
     private Date transactionDate = new Date();
-    double transactionAmount;
+    Money transactionAmount;
 
-    public Transaction(double transactionAmount) {
+    public Transaction(Money transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
-    public abstract void print();
+    public void print(StatementPrinter statementPrinter) {
+        printDate();
+        statementPrinter.printTab();
+        printTransactionAmount();
+        updateTotalBalance(statementPrinter);
+    }
+
+    protected void updateTotalBalance(StatementPrinter statementPrinter) {
+        statementPrinter.increaseBalanceTotalBy(transactionAmount);
+    }
 
     protected void printDate() {
         System.out.print(format(transactionDate));
     }
 
     public void printTransactionAmount() {
-        System.out.print(transactionAmount);
+        transactionAmount.printValue();
     }
 
     private String format(Date date) {
