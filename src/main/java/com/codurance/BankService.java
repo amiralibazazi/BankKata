@@ -13,7 +13,7 @@ public class BankService {
     }
 
     public void withdraw(Money amount) {
-
+        transactionRepository.store(new WithdrawalTransaction(amount));
     }
 
     public void printStatement() {

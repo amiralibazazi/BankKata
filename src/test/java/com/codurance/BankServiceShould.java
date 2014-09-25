@@ -24,4 +24,11 @@ public class BankServiceShould {
         bankService.deposit(money_to_deposit);
         verify(transactionRepository).store(any(DepositTransaction.class));
     }
+
+    @Test public void
+    process_a_withdrawal_transaction() {
+        Money money_to_withdraw = new Money(30.00);
+        bankService.withdraw(money_to_withdraw);
+        verify(transactionRepository).store(any(WithdrawalTransaction.class));
+    }
 }
