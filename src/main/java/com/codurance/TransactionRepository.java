@@ -15,7 +15,10 @@ public class TransactionRepository {
     }
 
     public void printStatement(StatementPrinter statementPrinter) {
-
+        statementPrinter.printStatementHeader();
+        for (Transaction t : transactions) {
+            t.printTransaction(statementPrinter);
+        }
     }
 
     public boolean hasTransaction(Transaction transaction) {

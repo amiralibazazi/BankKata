@@ -3,23 +3,29 @@ package com.codurance.unittests;
 import com.codurance.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class TransactionRepositoryShould {
-
     private static final Money ARBITRARY_MONEY = new Money(10.00);
-    private DepositTransaction someDeposit;
-    private TransactionRepository transactionRepository;
-    private WithdrawalTransaction someWithdrawal;
+//    private DepositTransaction someDeposit;
+//    private WithdrawalTransaction someWithdrawal;
+    @Mock
+    StatementPrinter statementPrinter;
+    @Mock
+    DepositTransaction someDeposit;
+    @Mock
+    WithdrawalTransaction someWithdrawal;
 
-    @Before
-    public void initialise() {
-        someDeposit = new DepositTransaction(ARBITRARY_MONEY);
-        someWithdrawal = new WithdrawalTransaction(ARBITRARY_MONEY);
-        transactionRepository = new TransactionRepository();
-    }
+    @InjectMocks
+    private TransactionRepository transactionRepository = new TransactionRepository();
 
     @Test public void
     store_a_transaction() {
@@ -35,5 +41,17 @@ public class TransactionRepositoryShould {
         assertThat(transactionRepository.hasTransaction(someDeposit), is(true));
         assertThat(transactionRepository.hasTransaction(someWithdrawal), is(true));
         assertThat(transactionRepository.hasTransaction(unusedTransaction), is(false));
+    }
+    
+    @Test public void
+    print_a_statement_of_transactions() {
+        transactionRepository.store(someDeposit);
+        transactionRepository.store(someWithdrawal);
+
+        transactionRepository.printStatement(statementPrinter);
+
+        verify(statementPrinter).printStatementHeader();
+        verify(someDeposit).printTransaction(statementPrinter);
+        verify(someWithdrawal).printTransaction(statementPrinter);
     }
 }
