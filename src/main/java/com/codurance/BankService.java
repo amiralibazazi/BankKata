@@ -4,7 +4,7 @@ public class BankService {
 
     private TransactionRepository transactionRepository;
 
-    public BankService(TransactionRepository transactionRepository) {
+    public BankService(TransactionRepository transactionRepository, StatementPrinter statementPrinter) {
         this.transactionRepository = transactionRepository;
     }
 
@@ -16,7 +16,7 @@ public class BankService {
         transactionRepository.store(new WithdrawalTransaction(amount));
     }
 
-    public void printStatement() {
-
+    public void printStatement(StatementPrinter statementPrinter) {
+        transactionRepository.printStatement(statementPrinter);
     }
 }

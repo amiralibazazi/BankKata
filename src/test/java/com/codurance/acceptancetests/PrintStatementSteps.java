@@ -10,10 +10,12 @@ import org.junit.Before;
 public class PrintStatementSteps {
 
     private BankService bankService;
+    private StatementPrinter statementPrinter;
+    private TransactionRepository transactionRepository;
 
     @Before
     public void initialise() {
-        bankService = new BankService(null);
+        bankService = new BankService(transactionRepository, statementPrinter);
     }
 
     @Given("^a client makes a deposit of (\\d+) on \"(.*?)\"$")
@@ -39,7 +41,7 @@ public class PrintStatementSteps {
 
     @When("^she prints her bank statement$")
     public void she_prints_her_bank_statement() throws Throwable {
-        bankService.printStatement();
+        bankService.printStatement(statementPrinter);
         throw new PendingException();
     }
 

@@ -11,12 +11,14 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BankServiceShould {
+    private StatementPrinter statementPrinter;
 
     @Mock
     private TransactionRepository transactionRepository;
 
     @InjectMocks
-    private BankService bankService = new BankService(transactionRepository);
+    private BankService bankService = new BankService(transactionRepository, statementPrinter);
+
 
     @Test public void
     process_a_deposit_transaction() {
@@ -30,5 +32,11 @@ public class BankServiceShould {
         Money money_to_withdraw = new Money(30.00);
         bankService.withdraw(money_to_withdraw);
         verify(transactionRepository).store(any(WithdrawalTransaction.class));
+    }
+
+    @Test public void
+    print_a_statement_of_transactions() {
+        bankService.printStatement(statementPrinter);
+        verify(transactionRepository).printStatement(statementPrinter);
     }
 }
