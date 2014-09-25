@@ -1,5 +1,7 @@
-package com.codurance;
+package com.codurance.unittests;
 
+import com.codurance.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -11,6 +13,7 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BankServiceShould {
+
     private StatementPrinter statementPrinter;
 
     @Mock
@@ -19,6 +22,10 @@ public class BankServiceShould {
     @InjectMocks
     private BankService bankService = new BankService(transactionRepository, statementPrinter);
 
+    @Before
+    public void initialise() {
+        statementPrinter = new StatementPrinter();
+    }
 
     @Test public void
     process_a_deposit_transaction() {
