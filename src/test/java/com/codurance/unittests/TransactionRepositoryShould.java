@@ -1,22 +1,22 @@
 package com.codurance.unittests;
 
 import com.codurance.*;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static java.time.LocalDate.now;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TransactionRepositoryShould {
+
     private static final Money ARBITRARY_MONEY = new Money(10.00);
-//    private DepositTransaction someDeposit;
-//    private WithdrawalTransaction someWithdrawal;
+
     @Mock
     StatementPrinter statementPrinter;
     @Mock
@@ -35,7 +35,7 @@ public class TransactionRepositoryShould {
 
     @Test public void
     store_multiple_transactions() {
-        Transaction unusedTransaction = new DepositTransaction(ARBITRARY_MONEY);
+        Transaction unusedTransaction = new DepositTransaction(ARBITRARY_MONEY, new TransactionDate(now()));
         transactionRepository.store(someDeposit);
         transactionRepository.store(someWithdrawal);
         assertThat(transactionRepository.hasTransaction(someDeposit), is(true));
@@ -51,7 +51,7 @@ public class TransactionRepositoryShould {
         transactionRepository.printStatement(statementPrinter);
 
         verify(statementPrinter).printStatementHeader();
-        verify(someDeposit).printTransaction(statementPrinter);
-        verify(someWithdrawal).printTransaction(statementPrinter);
+        verify(someDeposit).addTransactionToStatement(statementPrinter);
+        verify(someWithdrawal).addTransactionToStatement(statementPrinter);
     }
 }
